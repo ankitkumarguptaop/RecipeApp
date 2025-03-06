@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const { sequelize } = require("../configs/database");
 
 const User = sequelize.define(
-  "Users",
+  "User",
   {
     id: {
       allowNull: false,
@@ -33,7 +33,6 @@ const User = sequelize.define(
           args: true,
           msg: "invalid email format",
         },
-        
       },
     },
     password: {
@@ -56,7 +55,8 @@ const User = sequelize.define(
     },
   },
   {
-    modelName: "Users",
+    modelName: "User",
+    tableName: "User"
   }
 );
 
@@ -72,7 +72,7 @@ User.beforeCreate(async (user) => {
     });
 });
 
-User.prototype.validPassword = async function (password) {
+User.prototype.matchPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 

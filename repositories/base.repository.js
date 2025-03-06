@@ -33,9 +33,27 @@ class BaseRepository {
     if (limit) findQuery.limit = limit;
     return await this.model.findAll(findQuery);
   }
+  async findAndCountAll({ criteria, include = [], offset = 0, limit = 10 }) {
+    return await this.model.findAndCountAll({
+      where: criteria,
+      include,
+      offset,
+      limit,
+    });
+  }
 
-  async softDelete(criteria, options = null) {
-    const response = await this.model.destroy({ where: criteria }, options);
-    return response;
+  async findOne(criteria, include = [], attributes = {}, options = {}) {
+    return await this.model.findOne({
+      where: criteria,
+      include,
+      attributes,
+      ...options,
+    });
+  }
+
+  async createBulk(payload, options) {
+    return await this.model.bulkCreate(payload, options);
   }
 }
+
+module.exports = BaseRepository;
