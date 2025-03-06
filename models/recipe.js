@@ -4,7 +4,6 @@ const User = require("./user");
 const Cateogories = require("./cateogory");
 const { sequelize } = require("../configs/database");
 const Attachment = require("./attachment");
-// const Cateogory = require("./cateogory");
 
 const Recipe = sequelize.define(
   "Recipe",
@@ -27,10 +26,12 @@ const Recipe = sequelize.define(
       require: true,
     },
     description: {
+      allowNull: false,
       type: Sequelize.STRING,
     },
     user_id: {
       type: Sequelize.INTEGER,
+      allowNull: false,
       references: {
         model: "User",
         key: "id",
@@ -38,6 +39,7 @@ const Recipe = sequelize.define(
     },
     cateogory_id: {
       type: Sequelize.INTEGER,
+      allowNull: false,
       references: {
         model: "Cateogories",
         key: "id",
@@ -45,6 +47,7 @@ const Recipe = sequelize.define(
     },
     attachment_id: {
       type: Sequelize.INTEGER,
+      allowNull: false,
       references: {
         model: "Attachments",
         key: "id",

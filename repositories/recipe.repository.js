@@ -9,15 +9,16 @@ class RecipeRepository extends BaseRepository {
   }
   
   async listUser({ user_id, query ,include }) {
-    const { limit = 10, page = 1, search  ,category} = query;
+    const { limit = 10, page = 1, search  ,cateogory_id} = query;
     let offset = 0;
     if (page && limit) {
       offset = limit * (page - 1);
     }
  
     let whereObj = {}; 
-    if(category){
-      whereObj[""]
+
+    if(cateogory_id){
+      whereObj["cateogory_id"] =cateogory_id
     }
 
     whereObj["user_id"] = user_id;

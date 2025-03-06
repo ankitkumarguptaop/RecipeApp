@@ -1,9 +1,9 @@
 const express = require("express");
-const { userController ,recipeController } = require("../controllers");
-const { uplaod } = require("../middlewares/image-upload.middlere")
+const {recipeController } = require("../controllers");
+const { imageUpload } = require("../middlewares")
 const router = express.Router();
 
-router.post("/", uplaod().single("picture"), recipeController.createRecipe);
+router.post("/", imageUpload.uplaod().single("picture"), recipeController.createRecipe);
 router.get("/", recipeController.listRecipe);
 
 module.exports = router;

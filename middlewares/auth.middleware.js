@@ -4,9 +4,9 @@ const { userRepository } = require("../repositories");
 const { UnAuthorized } = require("../libs/errors");
 
 exports.jwtTokenValidation = async (req, res, next) => {
-  let token;
+
   try {
-    token = req?.cookies?.jwt;
+  let token = req?.cookies?.jwt;
     if (token) {
       const authenticatedUser = jwt.verify(token, process.env.JWT_SECRET);
       req.user = await userRepository.findOne({ id: authenticatedUser.id });
