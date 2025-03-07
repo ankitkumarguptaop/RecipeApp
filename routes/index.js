@@ -3,6 +3,7 @@ const router = express.Router();
 const {authMiddleware  } = require('../middlewares');
 
 router.use("/users", require("./user.routes"));
+router.use("/cateogories", require("./cateogory.routes"));
 router.use("/recipes",  authMiddleware.jwtTokenValidation, require("./recipe.routes"));
 
 module.exports = router;

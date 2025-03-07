@@ -2,11 +2,14 @@ const { BadRequest, NoContent } = require("../libs/errors");
 const { recipeRepository, attachmentRepository } = require("../repositories");
 
 exports.createRecipe = async (payload) => {
-  const { name, description, cateogory_id } = payload.body;
+  const { name, description, category } = payload.body;
   const user = payload.user;
+
   const { filename, path, size } = payload.file;
 
-  if (!name || !description || !cateogory_id || !filename || !path || !size) {
+  console.log(payload)
+
+  if (!name || !description || !category || !filename || !path || !size) {
     throw new BadRequest("data is not given");
   }
 
@@ -24,7 +27,7 @@ exports.createRecipe = async (payload) => {
     name: name,
     description: description,
     user_id: user.id,
-    cateogory_id: cateogory_id,
+    cateogory_id: category,
     attachment_id: recipeImage.id,
   });
 
@@ -37,7 +40,7 @@ exports.listRecipe = async (payload) => {
   const response = await recipeRepository.listUser({
     query: payload.query,
     user_id: user.id,
-    include:['attachment' ,'user','cateogory']
+    include: ["attachment", "user", "cateogory"],
   });
 
   return response;

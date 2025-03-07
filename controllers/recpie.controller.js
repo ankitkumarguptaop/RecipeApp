@@ -12,7 +12,7 @@ exports.createRecipe = async (req, res) => {
       .status(OK)
       .json({ message: "successfuly created recipe", recipe: response });
   } catch (error) {
-    console.log("Failed to create recipe", error.message);
+    console.log("Failed to create recipe", error);
     res
       .status(error.statusCode || INTERNAL_SERVER_ERROR)
       .json({ error: error.message });

@@ -69,7 +69,7 @@ const Recipe = sequelize.define(
 );
 
 Recipe.belongsTo(User, {
-  as:"user",
+  as: "user",
   foreignKey: "user_id",
 });
 User.hasMany(Recipe, {
@@ -78,7 +78,7 @@ User.hasMany(Recipe, {
 });
 
 Recipe.belongsTo(Cateogories, {
-  as:"cateogory",
+  as: "cateogory",
   foreignKey: "cateogory_id",
 });
 
@@ -88,7 +88,7 @@ Cateogories.hasMany(Recipe, {
 });
 
 Recipe.belongsTo(Attachment, {
-  as:'attachment',
+  as: "attachment",
   foreignKey: "attachment_id",
 });
 
@@ -96,6 +96,5 @@ Attachment.hasMany(Recipe, {
   foreignKey: "attachment_id",
   sourceKey: "id",
 });
-
 
 module.exports = Recipe;

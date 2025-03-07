@@ -8,6 +8,7 @@ module.exports={
     "database": "recipe",
     "host": process.env.DB_HOST,
     "dialect": process.env.DB_TYPE,
+    
 
   },
   "test": {
